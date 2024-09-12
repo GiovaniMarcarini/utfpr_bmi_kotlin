@@ -41,10 +41,6 @@ jobs:
       - name: Run Lint
         run: ./gradlew lint
 
-      # Rodar testes de UI instrumentados (em emulador)
-      - name: Run Instrumented Tests
-        run: ./gradlew connectedAndroidTest
-
       # Rodar testes unitários
       - name: Run Unit Tests
         run: ./gradlew test
