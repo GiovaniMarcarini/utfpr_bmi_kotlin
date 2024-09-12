@@ -1,6 +1,5 @@
 name: Android CI
 
-# Quando acionar o workflow
 on:
   push:
     branches:
@@ -26,11 +25,15 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
+      # Conceder permissão de execução ao gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
       # Configurar ambiente Android
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
 
-      # Instalar dependências
+      # Instalar dependências e compilar
       - name: Gradle Build
         run: ./gradlew build
 
@@ -46,6 +49,6 @@ jobs:
       - name: Run Instrumented Tests
         run: ./gradlew connectedAndroidTest
 
-      # Construir o APK (se necessário)
+      # Construir o APK
       - name: Build APK
         run: ./gradlew assembleDebug
