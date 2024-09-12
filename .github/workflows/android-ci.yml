@@ -41,15 +41,6 @@ jobs:
       - name: Run Lint
         run: ./gradlew lint
 
-      # Iniciar emulador Android
-      - name: Start emulator
-        run: |
-          sudo $ANDROID_HOME/emulator/emulator -list-avds
-          sudo $ANDROID_HOME/emulator/emulator -avd "system-images;android-30;default;x86" -no-skin -no-audio -no-window &
-          adb wait-for-device
-          adb shell input keyevent 82
-        timeout-minutes: 5
-
       # Rodar testes de UI instrumentados (em emulador)
       - name: Run Instrumented Tests
         run: ./gradlew connectedAndroidTest
